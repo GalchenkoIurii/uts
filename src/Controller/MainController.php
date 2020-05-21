@@ -26,4 +26,24 @@ class MainController extends AbstractController
 
         ]);
     }
+
+    /**
+     * @Route("/news", name="news")
+     */
+    public function news()
+    {
+        return $this->render('main/news.html.twig', [
+
+        ]);
+    }
+
+    /**
+     * @Route("/contacts", name="contacts")
+     */
+    public function contacts()
+    {
+        return $this->render('main/contacts.html.twig', [
+
+        ]);
+    }
 }

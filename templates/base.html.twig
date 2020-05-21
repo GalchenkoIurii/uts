@@ -34,13 +34,13 @@
             <div class="navbar-inner">
                 <div class="container">
                     <!-- logo -->
-                    <a class="brand logo" href="#"><img src="" alt=""></a>
+                    <a class="brand logo" href="{{ path('index') }}"><img src="{{ asset('assets/img/.png') }}" alt=""></a>
                     <!-- end logo -->
                     <!-- top menu -->
                     <div class="navigation">
                         <nav>
                             <ul class="nav topnav">
-                                <li class="dropdown active">
+                                <li class="dropdown">
                                     <a href="{{ path('index') }}">Главная</a>
                                 </li>
                                 <li class="dropdown">
@@ -50,10 +50,10 @@
                                     <a href="{{ path('companies') }}">Компании</a>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#">Новости</a>
+                                    <a href="{{ path('news') }}">Новости</a>
                                 </li>
                                 <li>
-                                    <a href="#">Контакты</a>
+                                    <a href="{{ path('contacts') }}">Контакты</a>
                                 </li>
                                 <li>
                                     <a href="#">Аккаунт</a>
@@ -97,7 +97,7 @@
                 <div class="span4">
                     <div class="widget">
                         <!-- logo -->
-                        <a class="brand logo" href="#">
+                        <a class="brand logo" href="{{ path('index') }}">
                             <img src="" alt="">
                         </a>
                         <!-- end logo -->
