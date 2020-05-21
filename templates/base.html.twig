@@ -9,22 +9,21 @@
     <!-- styles -->
     {% block stylesheets %}
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700" rel="stylesheet">
-        <link href="assets/css/bootstrap.css" rel="stylesheet">
-        <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="assets/css/docs.css" rel="stylesheet">
-        <link href="assets/css/prettyPhoto.css" rel="stylesheet">
-        <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
-        <link href="assets/css/flexslider.css" rel="stylesheet">
-        <link href="assets/css/sequence.css" rel="stylesheet">
-        <link href="assets/css/style.css" rel="stylesheet">
-        <link href="assets/color/default.css" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('') }}">
+        <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/bootstrap-responsive.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/docs.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/prettyPhoto.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/js/google-code-prettify/prettify.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/flexslider.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/sequence.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/color/default.css') }}" rel="stylesheet">
         <!-- fav and touch icons -->
-        <link rel="shortcut icon" href="assets/ico/favicon.ico">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="{{ asset('assets/ico/favicon.ico') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('assets/ico/apple-touch-icon-144-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('assets/ico/apple-touch-icon-114-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('assets/ico/apple-touch-icon-72-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/ico/apple-touch-icon-57-precomposed.png') }}">
     {% endblock %}
 </head>
 <body>
@@ -104,7 +103,7 @@
                         <!-- end logo -->
                         <address>
                             <strong>Ukrainian Trading System, Inc.</strong><br>
-                            Sumska Str., 24, of. 9<br>
+                            Sumska Str., 24<br>
                             Kharkiv, Ukraine<br>
                             <abbr title="Phone">P:</abbr> +38 (095) 652-80-23
                         </address>
@@ -117,7 +116,7 @@
                 <div class="row">
                     <div class="span6">
                         <p>
-                            &copy; UTS - All rights reserved
+                            &copy; UTS 2020 - All rights reserved
                         </p>
                     </div>
                     <div class="span6">
@@ -131,23 +130,23 @@
     </footer>
 {% endblock %}
 {% block javascripts %}
-    <!-- JavaScript Libraries -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.easing.js"></script>
-    <script src="assets/js/google-code-prettify/prettify.js"></script>
-    <script src="assets/js/modernizr.js"></script>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/js/jquery.elastislide.js"></script>
-    <script src="assets/js/sequence/sequence.jquery-min.js"></script>
-    <script src="assets/js/sequence/setting.js"></script>
-    <script src="assets/js/jquery.prettyPhoto.js"></script>
-    <script src="assets/js/application.js"></script>
-    <script src="assets/js/jquery.flexslider.js"></script>
-    <script src="assets/js/hover/jquery-hover-effect.js"></script>
-    <script src="assets/js/hover/setting.js"></script>
+    <!-- JS Libraries -->
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.easing.js') }}"></script>
+    <script src="{{ asset('assets/js/google-code-prettify/prettify.js') }}"></script>
+    <script src="{{ asset('assets/js/modernizr.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.elastislide.js') }}"></script>
+    <script src="{{ asset('assets/js/sequence/sequence.jquery-min.js') }}"></script>
+    <script src="{{ asset('assets/js/sequence/setting.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.prettyPhoto.js') }}"></script>
+    <script src="{{ asset('assets/js/application.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.flexslider.js') }}"></script>
+    <script src="{{ asset('assets/js/hover/jquery-hover-effect.js') }}"></script>
+    <script src="{{ asset('assets/js/hover/setting.js') }}"></script>
 
-    <!-- Custom JavaScript -->
-    <script src="assets/js/custom.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
 
     {#<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>#}
     {#<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>#}
