@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block body %}
+    <section id="subintro">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="centered">
+                            <h3>Регистрация</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb notop">
+                        <li><a href="{{ path('index') }}">Главная</a><span class="divider">/</span></li>
+                        <li class="active">Регистрация</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                <div class="span8 offset2">
+                    <p>Для того, что бы иметь возможность разместить лот о продаже или покупке продукции,
+                        сделать предложение по существующему лоту, Вам необходимо создать аккаунт.</p>
+                    <p>Создание аккаунта не отнимет у Вас много времени. Для этого Вам необходимо ввести только адрес
+                        электронной почты и пароль, с помощью которого Вы сможете зайти в свой кабинет.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span8 offset2">
+                    <div class="well">
+                        <div class="centered">
+                            {{ form_start(registrationForm) }}
+                            {{ form_row(registrationForm.email) }}
+                            {{ form_row(registrationForm.plainPassword) }}
+                            {{ form_row(registrationForm.agreeTerms) }}
+
+                            <button type="submit" class="btn">Зарегистрироваться</button>
+                            {{ form_end(registrationForm) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
