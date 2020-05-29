@@ -41,7 +41,7 @@
                         <nav>
                             {% if app.user %}
                                 <div class="user-name">
-                                    {{ app.user.name }}, <a href="#">Кабинет</a>
+                                    {{ app.user.name }} <i class="icon-user"></i> <a href="#">Кабинет</a>
                                 </div>
                             {% endif %}
                             <ul class="nav topnav">
@@ -49,7 +49,7 @@
                                     <a href="{{ path('index') }}">Главная</a>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#">Торги</a>
+                                    <a href="{{ path('trading') }}">Торги</a>
                                 </li>
                                 <li class="dropdown">
                                     <a href="{{ path('companies') }}">Компании</a>
