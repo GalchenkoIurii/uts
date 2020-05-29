@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block body %}
+    <section id="subintro">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="centered">
+                            <h3>Регистрация</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb notop">
+                        <li><a href="{{ path('index') }}">Главная</a><span class="divider">/</span></li>
+                        <li class="active">Регистрация</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maincontent">
+        <div class="container">
+            <div class="row spacer50">
+                <div class="span8 offset2">
+                    <div class="centered">
+                        <h2>Поздравляем!</h2>
+                        <h3>Вы были успешно зарегистрированы!</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row spacer50 botspacer50">
+                <div class="span12">
+                    <div class="tagline centered">
+                        <div class="row">
+                            <div class="span12">
+                                <div class="tagline_text">
+                                    <p class="spacer30">Теперь Вы можете разместить лот о продаже/покупке продукции,
+                                        или просмотреть лоты других пользователей.</p>
+                                </div>
+                                <div class="btn-toolbar cta spacer50 botspacer50">
+                                    <a class="btn btn-large btn-color" href="#">
+                                        <i class="icon-plane icon-white"></i> Try free version </a>
+                                    <a class="btn btn-large btn-inverse" href="#">
+                                        <i class="icon-shopping-cart icon-white"></i> Buy license </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
