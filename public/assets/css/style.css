@@ -227,6 +227,14 @@ nav select {
   display: none;
 }
 
+.user-name {
+  float: right;
+  margin-top: 5px;
+  position: relative;
+  line-height: 20px;
+  padding: 30px 15px 30px;
+}
+
 /* ================ */
 
 /* main content */

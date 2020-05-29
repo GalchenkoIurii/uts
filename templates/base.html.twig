@@ -39,6 +39,11 @@
                     <!-- top menu -->
                     <div class="navigation">
                         <nav>
+                            {% if app.user %}
+                                <div class="user-name">
+                                    {{ app.user.username }}
+                                </div>
+                            {% endif %}
                             <ul class="nav topnav">
                                 <li class="dropdown">
                                     <a href="{{ path('index') }}">Главная</a>
@@ -55,10 +60,17 @@
                                 <li>
                                     <a href="{{ path('contacts') }}">Контакты</a>
                                 </li>
+                                {% if not app.user %}
                                 <li>
-                                    <a href="#">Войти</a>
+                                    <a href="{{ path('app_login') }}">Войти</a>
                                 </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{{ path('app_logout') }}">Выйти</a>
+                                    </li>
+                                {% endif %}
                             </ul>
+
                         </nav>
                     </div>
                     <!-- end menu -->
