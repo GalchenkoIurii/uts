@@ -46,12 +46,13 @@
                                 <div class="tagline_text">
                                     <p class="spacer30">Теперь Вы можете разместить лот о продаже/покупке продукции,
                                         или просмотреть лоты других пользователей.</p>
+                                    <p class="spacer30">Так же Вы можете просмотреть информацию о зарегистрированных компаниях.</p>
+                                    <p class="spacer30">Что бы разместить свой лот или зарегистрировать компанию зайдите в кабинет пользователя.</p>
                                 </div>
                                 <div class="btn-toolbar cta spacer50 botspacer50">
-                                    <a class="btn btn-large btn-color" href="#">
-                                        <i class="icon-plane icon-white"></i> Try free version </a>
-                                    <a class="btn btn-large btn-inverse" href="#">
-                                        <i class="icon-shopping-cart icon-white"></i> Buy license </a>
+                                    <a class="btn btn-large btn-color" href="{{ path('trading') }}">Торги</a>
+                                    <a class="btn btn-large btn-inverse" href="{{ path('companies') }}">Компании</a>
+                                    <a class="btn btn-large btn-color" href="{{ path('trading') }}">Кабинет</a>
                                 </div>
                             </div>
                         </div>
