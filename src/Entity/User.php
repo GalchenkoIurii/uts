@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Аккаунт с таким адресом электронной почты уже существует")
  */
 class User implements UserInterface
 {
@@ -23,6 +23,9 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email(
+     *     message="Введенное значение {{ value }} является некорректным адресом электронной почты. Адрес электронной почты должен содержать символы @ и ."
+     * )
      */
     private $email;
 
