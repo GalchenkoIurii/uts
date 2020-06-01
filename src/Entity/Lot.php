@@ -81,10 +81,16 @@ class Lot
      */
     private $bids;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="lot")
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->bids = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -268,6 +274,37 @@ class Lot
             // set the owning side to null (unless already changed)
             if ($bid->getLot() === $this) {
                 $bid->setLot(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setLot($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getLot() === $this) {
+                $comment->setLot(null);
             }
         }
 
