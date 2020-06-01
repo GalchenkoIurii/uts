@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -49,6 +51,16 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $registration_date;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Lot::class, mappedBy="user")
+     */
+    private $lots;
+
+    public function __construct()
+    {
+        $this->lots = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -148,6 +160,37 @@ class User implements UserInterface
     public function setRegistrationDate(\DateTimeInterface $registration_date): self
     {
         $this->registration_date = $registration_date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Lot[]
+     */
+    public function getLots(): Collection
+    {
+        return $this->lots;
+    }
+
+    public function addLot(Lot $lot): self
+    {
+        if (!$this->lots->contains($lot)) {
+            $this->lots[] = $lot;
+            $lot->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLot(Lot $lot): self
+    {
+        if ($this->lots->contains($lot)) {
+            $this->lots->removeElement($lot);
+            // set the owning side to null (unless already changed)
+            if ($lot->getUser() === $this) {
+                $lot->setUser(null);
+            }
+        }
 
         return $this;
     }
