@@ -64,6 +64,12 @@ class Lot
      */
     private $images;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Subcategory::class, inversedBy="lots")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $subcategory;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -197,6 +203,18 @@ class Lot
                 $image->setLot(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSubcategory(): ?Subcategory
+    {
+        return $this->subcategory;
+    }
+
+    public function setSubcategory(?Subcategory $subcategory): self
+    {
+        $this->subcategory = $subcategory;
 
         return $this;
     }

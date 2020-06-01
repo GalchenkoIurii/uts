@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SubcategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +29,16 @@ class Subcategory
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Lot::class, mappedBy="subcategory")
+     */
+    private $lots;
+
+    public function __construct()
+    {
+        $this->lots = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -53,6 +65,37 @@ class Subcategory
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Lot[]
+     */
+    public function getLots(): Collection
+    {
+        return $this->lots;
+    }
+
+    public function addLot(Lot $lot): self
+    {
+        if (!$this->lots->contains($lot)) {
+            $this->lots[] = $lot;
+            $lot->setSubcategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLot(Lot $lot): self
+    {
+        if ($this->lots->contains($lot)) {
+            $this->lots->removeElement($lot);
+            // set the owning side to null (unless already changed)
+            if ($lot->getSubcategory() === $this) {
+                $lot->setSubcategory(null);
+            }
+        }
 
         return $this;
     }
