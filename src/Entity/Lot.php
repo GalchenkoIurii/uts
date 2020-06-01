@@ -76,9 +76,15 @@ class Lot
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Bid::class, mappedBy="lot")
+     */
+    private $bids;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->bids = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -233,6 +239,37 @@ class Lot
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Bid[]
+     */
+    public function getBids(): Collection
+    {
+        return $this->bids;
+    }
+
+    public function addBid(Bid $bid): self
+    {
+        if (!$this->bids->contains($bid)) {
+            $this->bids[] = $bid;
+            $bid->setLot($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBid(Bid $bid): self
+    {
+        if ($this->bids->contains($bid)) {
+            $this->bids->removeElement($bid);
+            // set the owning side to null (unless already changed)
+            if ($bid->getLot() === $this) {
+                $bid->setLot(null);
+            }
+        }
 
         return $this;
     }
