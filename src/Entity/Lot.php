@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LotRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +58,16 @@ class Lot
      * @ORM\Column(type="float")
      */
     private $end_price;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="lot")
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +166,37 @@ class Lot
     public function setEndPrice(float $end_price): self
     {
         $this->end_price = $end_price;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setLot($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getLot() === $this) {
+                $image->setLot(null);
+            }
+        }
 
         return $this;
     }
