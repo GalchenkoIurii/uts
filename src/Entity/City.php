@@ -29,9 +29,15 @@ class City
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Company::class, mappedBy="city")
+     */
+    private $companies;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->companies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,6 +82,37 @@ class City
             // set the owning side to null (unless already changed)
             if ($user->getCity() === $this) {
                 $user->setCity(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Company[]
+     */
+    public function getCompanies(): Collection
+    {
+        return $this->companies;
+    }
+
+    public function addCompany(Company $company): self
+    {
+        if (!$this->companies->contains($company)) {
+            $this->companies[] = $company;
+            $company->setCity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompany(Company $company): self
+    {
+        if ($this->companies->contains($company)) {
+            $this->companies->removeElement($company);
+            // set the owning side to null (unless already changed)
+            if ($company->getCity() === $this) {
+                $company->setCity(null);
             }
         }
 
