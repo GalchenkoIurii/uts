@@ -105,6 +105,11 @@ class User implements UserInterface
      */
     private $companies;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Phone::class, mappedBy="user")
+     */
+    private $phones;
+
     public function __construct()
     {
         $this->lots = new ArrayCollection();
@@ -113,6 +118,7 @@ class User implements UserInterface
         $this->news = new ArrayCollection();
         $this->responses = new ArrayCollection();
         $this->companies = new ArrayCollection();
+        $this->phones = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -445,6 +451,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($company->getUser() === $this) {
                 $company->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Phone[]
+     */
+    public function getPhones(): Collection
+    {
+        return $this->phones;
+    }
+
+    public function addPhone(Phone $phone): self
+    {
+        if (!$this->phones->contains($phone)) {
+            $this->phones[] = $phone;
+            $phone->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhone(Phone $phone): self
+    {
+        if ($this->phones->contains($phone)) {
+            $this->phones->removeElement($phone);
+            // set the owning side to null (unless already changed)
+            if ($phone->getUser() === $this) {
+                $phone->setUser(null);
             }
         }
 
