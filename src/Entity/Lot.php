@@ -86,6 +86,21 @@ class Lot
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $currency_id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $measure_id;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $type = [];
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -307,6 +322,42 @@ class Lot
                 $comment->setLot(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCurrencyId(): ?int
+    {
+        return $this->currency_id;
+    }
+
+    public function setCurrencyId(int $currency_id): self
+    {
+        $this->currency_id = $currency_id;
+
+        return $this;
+    }
+
+    public function getMeasureId(): ?int
+    {
+        return $this->measure_id;
+    }
+
+    public function setMeasureId(int $measure_id): self
+    {
+        $this->measure_id = $measure_id;
+
+        return $this;
+    }
+
+    public function getType(): ?array
+    {
+        return $this->type;
+    }
+
+    public function setType(array $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
