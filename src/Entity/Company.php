@@ -67,9 +67,15 @@ class Company
      */
     private $phones;
 
+    /**
+     * @ORM\OneToMany(targetEntity=CompanyResponse::class, mappedBy="company")
+     */
+    private $companyResponses;
+
     public function __construct()
     {
         $this->phones = new ArrayCollection();
+        $this->companyResponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -198,6 +204,37 @@ class Company
             // set the owning side to null (unless already changed)
             if ($phone->getCompany() === $this) {
                 $phone->setCompany(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CompanyResponse[]
+     */
+    public function getCompanyResponses(): Collection
+    {
+        return $this->companyResponses;
+    }
+
+    public function addCompanyResponse(CompanyResponse $companyResponse): self
+    {
+        if (!$this->companyResponses->contains($companyResponse)) {
+            $this->companyResponses[] = $companyResponse;
+            $companyResponse->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompanyResponse(CompanyResponse $companyResponse): self
+    {
+        if ($this->companyResponses->contains($companyResponse)) {
+            $this->companyResponses->removeElement($companyResponse);
+            // set the owning side to null (unless already changed)
+            if ($companyResponse->getCompany() === $this) {
+                $companyResponse->setCompany(null);
             }
         }
 
