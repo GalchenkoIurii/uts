@@ -101,11 +101,17 @@ class Lot
      */
     private $type = [];
 
+    /**
+     * @ORM\OneToMany(targetEntity=Response::class, mappedBy="lot")
+     */
+    private $responses;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->bids = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->responses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -358,6 +364,37 @@ class Lot
     public function setType(array $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Response[]
+     */
+    public function getResponses(): Collection
+    {
+        return $this->responses;
+    }
+
+    public function addResponse(Response $response): self
+    {
+        if (!$this->responses->contains($response)) {
+            $this->responses[] = $response;
+            $response->setLot($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResponse(Response $response): self
+    {
+        if ($this->responses->contains($response)) {
+            $this->responses->removeElement($response);
+            // set the owning side to null (unless already changed)
+            if ($response->getLot() === $this) {
+                $response->setLot(null);
+            }
+        }
 
         return $this;
     }

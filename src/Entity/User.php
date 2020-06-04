@@ -95,12 +95,18 @@ class User implements UserInterface
      */
     private $city;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Response::class, mappedBy="user")
+     */
+    private $responses;
+
     public function __construct()
     {
         $this->lots = new ArrayCollection();
         $this->bids = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->news = new ArrayCollection();
+        $this->responses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -373,6 +379,37 @@ class User implements UserInterface
     public function setCity(?City $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Response[]
+     */
+    public function getResponses(): Collection
+    {
+        return $this->responses;
+    }
+
+    public function addResponse(Response $response): self
+    {
+        if (!$this->responses->contains($response)) {
+            $this->responses[] = $response;
+            $response->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResponse(Response $response): self
+    {
+        if ($this->responses->contains($response)) {
+            $this->responses->removeElement($response);
+            // set the owning side to null (unless already changed)
+            if ($response->getUser() === $this) {
+                $response->setUser(null);
+            }
+        }
 
         return $this;
     }
