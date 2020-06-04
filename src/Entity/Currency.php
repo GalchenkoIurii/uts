@@ -22,6 +22,16 @@ class Currency
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $base;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $value;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -35,6 +45,30 @@ class Currency
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getBase(): ?bool
+    {
+        return $this->base;
+    }
+
+    public function setBase(bool $base): self
+    {
+        $this->base = $base;
+
+        return $this;
+    }
+
+    public function getValue(): ?float
+    {
+        return $this->value;
+    }
+
+    public function setValue(float $value): self
+    {
+        $this->value = $value;
 
         return $this;
     }
