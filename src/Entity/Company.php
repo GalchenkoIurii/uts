@@ -72,6 +72,11 @@ class Company
      */
     private $companyResponses;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Avatar::class, mappedBy="company", cascade={"persist", "remove"})
+     */
+    private $avatar;
+
     public function __construct()
     {
         $this->phones = new ArrayCollection();
@@ -236,6 +241,24 @@ class Company
             if ($companyResponse->getCompany() === $this) {
                 $companyResponse->setCompany(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getAvatar(): ?Avatar
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?Avatar $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newCompany = null === $avatar ? null : $this;
+        if ($avatar->getCompany() !== $newCompany) {
+            $avatar->setCompany($newCompany);
         }
 
         return $this;

@@ -115,6 +115,11 @@ class User implements UserInterface
      */
     private $companyResponses;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Avatar::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $avatar;
+
     public function __construct()
     {
         $this->lots = new ArrayCollection();
@@ -520,6 +525,24 @@ class User implements UserInterface
             if ($companyResponse->getUser() === $this) {
                 $companyResponse->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getAvatar(): ?Avatar
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?Avatar $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newUser = null === $avatar ? null : $this;
+        if ($avatar->getUser() !== $newUser) {
+            $avatar->setUser($newUser);
         }
 
         return $this;
