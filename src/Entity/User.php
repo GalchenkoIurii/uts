@@ -72,6 +72,29 @@ class User implements UserInterface
      */
     private $news;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $status = [];
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $country;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Region::class, inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $region;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=City::class, inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $city;
+
     public function __construct()
     {
         $this->lots = new ArrayCollection();
@@ -302,6 +325,54 @@ class User implements UserInterface
                 $news->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStatus(): ?array
+    {
+        return $this->status;
+    }
+
+    public function setStatus(array $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getRegion(): ?Region
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?Region $region): self
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    public function getCity(): ?City
+    {
+        return $this->city;
+    }
+
+    public function setCity(?City $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }
