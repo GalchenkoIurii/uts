@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\City;
 use App\Entity\Country;
 use App\Entity\Region;
+use App\Entity\Subcategory;
+use App\Form\CategoryType;
 use App\Form\CityType;
 use App\Form\CountryType;
 use App\Form\RegionType;
+use App\Form\SubcategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -89,6 +93,52 @@ class AdminController extends AbstractController
 
         return $this->render('admin/city.html.twig', [
             'cityForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/category", name="add_category")
+     */
+    public function addCategory(Request $request)
+    {
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('data_added');
+        }
+
+        return $this->render('admin/category.html.twig', [
+            'categoryForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/subcategory", name="add_subcategory")
+     */
+    public function addSubcategory(Request $request)
+    {
+        $subcategory = new Subcategory();
+        $form = $this->createForm(SubcategoryType::class, $subcategory);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($subcategory);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('data_added');
+        }
+
+        return $this->render('admin/subcategory.html.twig', [
+            'subcategoryForm' => $form->createView(),
         ]);
     }
 
