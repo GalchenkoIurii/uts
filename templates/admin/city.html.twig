@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Панель управления{% endblock %}
+
+{% block body %}
+    <section id="subintro">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="centered">
+                            <h3>Панель управления</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb notop">
+                        <li><a href="{{ path('index') }}">Главная</a><span class="divider">/</span></li>
+                        <li class="active">Панель управления</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                <div class="span8 offset2">
+                    {{ form_start(cityForm) }}
+                    {{ form_row(cityForm.name) }}
+                    <button type="submit" class="btn btn-color spacer30">Добавить</button>
+                    {{ form_end(cityForm) }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\City;
 use App\Entity\Country;
 use App\Entity\Region;
+use App\Form\CityType;
 use App\Form\CountryType;
 use App\Form\RegionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -64,6 +66,29 @@ class AdminController extends AbstractController
 
         return $this->render('admin/region.html.twig', [
             'regionForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/city", name="add_city")
+     */
+    public function addCity(Request $request)
+    {
+        $city = new City();
+        $form = $this->createForm(CityType::class, $city);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($city);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('data_added');
+        }
+
+        return $this->render('admin/city.html.twig', [
+            'cityForm' => $form->createView(),
         ]);
     }
 
