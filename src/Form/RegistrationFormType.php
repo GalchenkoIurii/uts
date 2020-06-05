@@ -2,7 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\City;
+use App\Entity\Country;
+use App\Entity\Region;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -18,6 +22,9 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('country', EntityType::class, ['class' => Country::class, 'label' => 'Страна'])
+            ->add('region', EntityType::class, ['class' => Region::class, 'label' => 'Регион'])
+            ->add('city', EntityType::class, ['class' => City::class, 'label' => 'Город'])
             ->add('name', TextType::class, ['label' => 'Имя'])
             ->add('email')
 //            ->add('agreeTerms', CheckboxType::class, [

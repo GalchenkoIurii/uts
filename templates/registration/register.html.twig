@@ -34,8 +34,9 @@
                 <div class="span8 offset2">
                     <p>Для того, что бы иметь возможность разместить лот о продаже или покупке продукции,
                         сделать предложение по существующему лоту, Вам необходимо создать аккаунт.</p>
-                    <p>Создание аккаунта не отнимет у Вас много времени. Для этого Вам необходимо ввести только Ваше имя,
-                        адрес электронной почты и пароль, с помощью которого Вы сможете зайти в свой кабинет.</p>
+                    <p>Создание аккаунта не отнимет у Вас много времени. Для этого Вам необходимо выбрать страну,
+                        регион и город, а так же ввести Ваше имя, адрес электронной почты и пароль, с помощью которого
+                        Вы сможете зайти в свой кабинет.</p>
                 </div>
             </div>
             <div class="row">
@@ -43,6 +44,9 @@
                     <div class="well">
                         <div class="centered">
                             {{ form_start(registrationForm) }}
+                            {{ form_row(registrationForm.country) }}
+                            {{ form_row(registrationForm.region) }}
+                            {{ form_row(registrationForm.city) }}
                             {{ form_row(registrationForm.name) }}
                             {{ form_row(registrationForm.email) }}
                             {{ form_row(registrationForm.plainPassword) }}
