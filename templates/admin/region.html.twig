@@ -32,9 +32,10 @@
         <div class="container">
             <div class="row">
                 <div class="span8 offset2">
-                    <div><a href="{{ path('add_country') }}">Добавить страну</a></div>
-                    <div><a href="{{ path('add_region') }}">Добавить регион</a></div>
-                    <div><a href="{{ path('add_city') }}">Добавить город</a></div>
+                    {{ form_start(regionForm) }}
+                    {{ form_row(regionForm.name) }}
+                    <button type="submit" class="btn btn-color spacer30">Добавить</button>
+                    {{ form_end(regionForm) }}
                 </div>
             </div>
         </div>

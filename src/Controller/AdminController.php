@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Country;
+use App\Entity\Region;
 use App\Form\CountryType;
+use App\Form\RegionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,6 +41,29 @@ class AdminController extends AbstractController
 
         return $this->render('admin/country.html.twig', [
             'countryForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/region", name="add_region")
+     */
+    public function addRegion(Request $request)
+    {
+        $region = new Region();
+        $form = $this->createForm(RegionType::class, $region);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($region);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('data_added');
+        }
+
+        return $this->render('admin/region.html.twig', [
+            'regionForm' => $form->createView(),
         ]);
     }
 
