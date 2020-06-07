@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\City;
 use App\Entity\Country;
+use App\Entity\Currency;
 use App\Entity\Region;
 use App\Entity\Subcategory;
 use App\Form\CategoryType;
 use App\Form\CityType;
 use App\Form\CountryType;
+use App\Form\CurrencyType;
 use App\Form\RegionType;
 use App\Form\SubcategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -139,6 +141,29 @@ class AdminController extends AbstractController
 
         return $this->render('admin/subcategory.html.twig', [
             'subcategoryForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/currency", name="add_currency")
+     */
+    public function addCurrency(Request $request)
+    {
+        $currency = new Currency();
+        $form = $this->createForm(CurrencyType::class, $currency);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($currency);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('data_added');
+        }
+
+        return $this->render('admin/currency.html.twig', [
+            'currencyForm' => $form->createView(),
         ]);
     }
 

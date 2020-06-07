@@ -28,7 +28,7 @@ class Currency
     private $base;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      */
     private $value;
 
@@ -61,12 +61,12 @@ class Currency
         return $this;
     }
 
-    public function getValue(): ?float
+    public function getValue(): ?int
     {
         return $this->value;
     }
 
-    public function setValue(float $value): self
+    public function setValue(int $value): self
     {
         $this->value = $value;
 
