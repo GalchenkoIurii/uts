@@ -30,6 +30,7 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setRegistrationDate(new \DateTime());
+            $user->setRoles(['ROLE_USER']);
             $user->setStatus(['trial']);
 
             $entityManager = $this->getDoctrine()->getManager();
