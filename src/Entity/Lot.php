@@ -45,17 +45,17 @@ class Lot
     private $quantity;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      */
     private $start_price;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      */
     private $current_price;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      */
     private $end_price;
 
@@ -97,14 +97,15 @@ class Lot
     private $measure_id;
 
     /**
-     * @ORM\Column(type="json")
-     */
-    private $type = [];
-
-    /**
      * @ORM\OneToMany(targetEntity=Response::class, mappedBy="lot")
      */
     private $responses;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="lots")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $type;
 
     public function __construct()
     {
@@ -179,36 +180,36 @@ class Lot
         return $this;
     }
 
-    public function getStartPrice(): ?float
+    public function getStartPrice(): ?int
     {
         return $this->start_price;
     }
 
-    public function setStartPrice(float $start_price): self
+    public function setStartPrice(int $start_price): self
     {
         $this->start_price = $start_price;
 
         return $this;
     }
 
-    public function getCurrentPrice(): ?float
+    public function getCurrentPrice(): ?int
     {
         return $this->current_price;
     }
 
-    public function setCurrentPrice(float $current_price): self
+    public function setCurrentPrice(int $current_price): self
     {
         $this->current_price = $current_price;
 
         return $this;
     }
 
-    public function getEndPrice(): ?float
+    public function getEndPrice(): ?int
     {
         return $this->end_price;
     }
 
-    public function setEndPrice(float $end_price): self
+    public function setEndPrice(int $end_price): self
     {
         $this->end_price = $end_price;
 
@@ -356,18 +357,6 @@ class Lot
         return $this;
     }
 
-    public function getType(): ?array
-    {
-        return $this->type;
-    }
-
-    public function setType(array $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Response[]
      */
@@ -395,6 +384,18 @@ class Lot
                 $response->setLot(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

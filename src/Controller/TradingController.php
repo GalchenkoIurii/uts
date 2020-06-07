@@ -34,6 +34,13 @@ class TradingController extends AbstractController
             $entityManager->persist($lot);
             $entityManager->flush();
 
+
+//            placement_date
+//            expiration_date
+//            current_price
+//            user
+
+
             return $this->redirectToRoute('lot_added');
         }
 

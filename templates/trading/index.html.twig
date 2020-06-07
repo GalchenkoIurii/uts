@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TradingController!{% endblock %}
+{% block title %}Торги{% endblock %}
 
 {% block body %}
     <section id="subintro">
@@ -34,7 +34,7 @@
                 <div class="span4">
                     <aside>
                         <div class="widget">
-                            <a href="#" class="btn btn-flat btn-color">Разместить лот</a>
+                            <a href="{{ path('add_lot') }}" class="btn btn-flat btn-color">Разместить лот</a>
                         </div>
                         <div class="widget">
                             <h4>Категории</h4>
