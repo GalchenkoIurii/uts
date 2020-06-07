@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TradingController!{% endblock %}
+
+{% block body %}
+    <section id="subintro">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="centered">
+                            <h3>Добавление лота</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb notop">
+                        <li><a href="{{ path('index') }}">Главная</a><span class="divider">/</span></li>
+                        <li><a href="{{ path('trading') }}">Торги</a><span class="divider">/</span></li>
+                        <li class="active">Добавление лота</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                <div class="span8 offset2">
+                    <p>Информация сохранена</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
