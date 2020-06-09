@@ -9,6 +9,7 @@ use App\Entity\Currency;
 use App\Entity\Measure;
 use App\Entity\Region;
 use App\Entity\Subcategory;
+use App\Entity\Type;
 use App\Form\CategoryType;
 use App\Form\CityType;
 use App\Form\CountryType;
@@ -16,6 +17,7 @@ use App\Form\CurrencyType;
 use App\Form\MeasureType;
 use App\Form\RegionType;
 use App\Form\SubcategoryType;
+use App\Form\TypeLotType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -189,6 +191,29 @@ class AdminController extends AbstractController
 
         return $this->render('admin/measure.html.twig', [
             'measureForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/type-lot", name="add_type_lot")
+     */
+    public function addTypeLot(Request $request)
+    {
+        $type = new Type();
+        $form = $this->createForm(TypeLotType::class, $type);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($type);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('data_added');
+        }
+
+        return $this->render('admin/type_lot.html.twig', [
+            'typeLotForm' => $form->createView(),
         ]);
     }
 
