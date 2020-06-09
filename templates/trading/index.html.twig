@@ -78,31 +78,30 @@
                     </aside>
                 </div>
                 <div class="span8">
-                    <article class="blog-post">
-                        <div class="post-heading">
-                            <h3><a href="#">Example article with thumbnail image</a></h3>
-                        </div>
-                        <div class="row">
-                            <div class="span3">
-                                <div class="post-image">
-                                    <a href="#"><img src="assets/img/dummies/blog1.jpg" alt="" /></a>
+                    {% for lot in lots %}
+                        <article class="blog-post">
+                            <div class="post-heading">
+                                <h3><a href="#">{{ lot.title }}</a></h3>
+                            </div>
+                            <div class="row">
+                                <div class="span3">
+                                    <div class="post-image">
+                                        <a href="#"><img src="assets/img/dummies/blog1.jpg" alt="" /></a>
+                                    </div>
+                                </div>
+                                <div class="span5">
+                                    <ul class="post-meta">
+                                        <li class="first"><i class="icon-calendar"></i><span>{{ lot.getPlacementDate()|date("d.m.Y") }}</span></li>
+                                        {#<li><i class="icon-list-alt"></i><span><a href="#">3 comments</a></span></li>#}
+                                    </ul>
+                                    <div class="clearfix">
+                                    </div>
+                                    <p>{{ lot.description }}</p>
+                                    <button class="btn btn-small btn-success" type="button">Read more</button>
                                 </div>
                             </div>
-                            <div class="span5">
-                                <ul class="post-meta">
-                                    <li class="first"><i class="icon-calendar"></i><span>March 03, 2013</span></li>
-                                    {#<li><i class="icon-list-alt"></i><span><a href="#">3 comments</a></span></li>#}
-                                </ul>
-                                <div class="clearfix">
-                                </div>
-                                <p>
-                                    Ei eos suavitate forensibus mnesarchum. Eu est timeam vocibus, an nostro aliquam adipiscing quo. Zril equidem et quo, ad albucius scripserit sit. Vis constituto deseruisse an, interesset reprehendunt et mel, gloriatur concludaturque pro no. At ludus mediocritatem
-                                    qui, no vituperata assueverit accommodare his.
-                                </p>
-                                <button class="btn btn-small btn-success" type="button">Read more</button>
-                            </div>
-                        </div>
-                    </article>
+                        </article>
+                    {% endfor %}
 
                     {#<div class="pagination">#}
                         {#<ul>#}

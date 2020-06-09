@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Lot;
 use App\Form\LotType;
+use App\Repository\LotRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,10 +14,12 @@ class TradingController extends AbstractController
     /**
      * @Route("/trading", name="trading")
      */
-    public function index()
+    public function index(LotRepository $lotRepository)
     {
+        $lots = $lotRepository->findAll();
 
         return $this->render('trading/index.html.twig', [
+            'lots' => $lots
         ]);
     }
 
