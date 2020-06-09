@@ -25,9 +25,9 @@ class LotType extends AbstractType
             ->add('description', TextareaType::class, ['label' => 'Введите описание лота'])
 
             ->add('quantity', IntegerType::class, ['label' => 'Введите количество товара'])
-            ->add('measure_id', EntityType::class, ['class' => Measure::class, 'label' => 'Выберите еденицу измерения для товара'])
+            ->add('measure', EntityType::class, ['class' => Measure::class, 'label' => 'Выберите еденицу измерения для товара'])
             ->add('start_price', MoneyType::class, ['label' => 'Введите стартовую цену', 'currency' => '', 'divisor' => 100])
-            ->add('currency_id', EntityType::class, ['class' => Currency::class, 'label' => 'Выберите валюту'])
+            ->add('currency', EntityType::class, ['class' => Currency::class, 'label' => 'Выберите валюту'])
 
             ->add('type', EntityType::class, ['class' => Type::class, 'label' => 'Выберите тип лота(купить/продать)'])
             ->add('subcategory', EntityType::class, ['class' => Subcategory::class, 'label' => 'Выберите категорию'])

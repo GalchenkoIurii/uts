@@ -30,15 +30,18 @@ class TradingController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            $lot->setPlacementDate(new \DateTime());
+
+            $expirationDate = new \DateTime();
+            $lot->setExpirationDate($expirationDate->modify('+24 hours'));
+
+            $lot->setCurrentPrice($lot->getStartPrice());
+            $lot->setEndPrice($lot->getStartPrice());
+            $lot->setUser($this->getUser());
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($lot);
             $entityManager->flush();
-
-
-//            placement_date
-//            expiration_date
-//            current_price
-//            user
 
 
             return $this->redirectToRoute('lot_added');

@@ -86,15 +86,15 @@ class Lot
      */
     private $comments;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $currency_id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $measure_id;
+//    /**
+//     * @ORM\Column(type="integer")
+//     */
+//    private $currency_id;
+//
+//    /**
+//     * @ORM\Column(type="integer")
+//     */
+//    private $measure_id;
 
     /**
      * @ORM\OneToMany(targetEntity=Response::class, mappedBy="lot")
@@ -106,6 +106,18 @@ class Lot
      * @ORM\JoinColumn(nullable=false)
      */
     private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Measure::class, inversedBy="lots")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $measure;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Currency::class, inversedBy="lots")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $currency;
 
     public function __construct()
     {
@@ -333,29 +345,29 @@ class Lot
         return $this;
     }
 
-    public function getCurrencyId(): ?int
-    {
-        return $this->currency_id;
-    }
-
-    public function setCurrencyId(int $currency_id): self
-    {
-        $this->currency_id = $currency_id;
-
-        return $this;
-    }
-
-    public function getMeasureId(): ?int
-    {
-        return $this->measure_id;
-    }
-
-    public function setMeasureId(int $measure_id): self
-    {
-        $this->measure_id = $measure_id;
-
-        return $this;
-    }
+//    public function getCurrencyId(): ?int
+//    {
+//        return $this->currency_id;
+//    }
+//
+//    public function setCurrencyId(int $currency_id): self
+//    {
+//        $this->currency_id = $currency_id;
+//
+//        return $this;
+//    }
+//
+//    public function getMeasureId(): ?int
+//    {
+//        return $this->measure_id;
+//    }
+//
+//    public function setMeasureId(int $measure_id): self
+//    {
+//        $this->measure_id = $measure_id;
+//
+//        return $this;
+//    }
 
     /**
      * @return Collection|Response[]
@@ -396,6 +408,30 @@ class Lot
     public function setType(?Type $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getMeasure(): ?Measure
+    {
+        return $this->measure;
+    }
+
+    public function setMeasure(?Measure $measure): self
+    {
+        $this->measure = $measure;
+
+        return $this;
+    }
+
+    public function getCurrency(): ?Currency
+    {
+        return $this->currency;
+    }
+
+    public function setCurrency(?Currency $currency): self
+    {
+        $this->currency = $currency;
 
         return $this;
     }
