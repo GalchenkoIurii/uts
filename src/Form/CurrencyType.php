@@ -15,7 +15,7 @@ class CurrencyType extends AbstractType
         $builder
             ->add('name', TextType::class, ['label' => 'Введите название валюты'])
             ->add('base', null, ['label' => 'Базовая валюта'])
-            ->add('value')
+            ->add('value', null, ['label' => 'Введите значение'])
         ;
     }
 
