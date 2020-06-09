@@ -6,12 +6,14 @@ use App\Entity\Category;
 use App\Entity\City;
 use App\Entity\Country;
 use App\Entity\Currency;
+use App\Entity\Measure;
 use App\Entity\Region;
 use App\Entity\Subcategory;
 use App\Form\CategoryType;
 use App\Form\CityType;
 use App\Form\CountryType;
 use App\Form\CurrencyType;
+use App\Form\MeasureType;
 use App\Form\RegionType;
 use App\Form\SubcategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -164,6 +166,29 @@ class AdminController extends AbstractController
 
         return $this->render('admin/currency.html.twig', [
             'currencyForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/measure", name="add_measure")
+     */
+    public function addMeasure(Request $request)
+    {
+        $measure = new Measure();
+        $form = $this->createForm(MeasureType::class, $measure);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($measure);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('data_added');
+        }
+
+        return $this->render('admin/measure.html.twig', [
+            'measureForm' => $form->createView(),
         ]);
     }
 
