@@ -16,10 +16,22 @@ class TradingController extends AbstractController
      */
     public function index(LotRepository $lotRepository)
     {
-        $lots = $lotRepository->findAll();
+        $lots = $lotRepository->findLotsDesc();
 
         return $this->render('trading/index.html.twig', [
             'lots' => $lots
+        ]);
+    }
+
+    /**
+     * @Route("/trading/{id}", name="show_lot")
+     */
+    public function showLot($id, LotRepository $lotRepository)
+    {
+        $lot = $lotRepository->find($id);
+
+        return $this->render('trading/lot.html.twig', [
+            'lot' => $lot
         ]);
     }
 

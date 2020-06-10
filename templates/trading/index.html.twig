@@ -39,65 +39,66 @@
                         <div class="widget">
                             <h4>Категории</h4>
                             <ul class="cat">
-                                <li><a href="#">Web design (114)</a></li>
-                                <li><a href="#">Internet news (15)</a></li>
-                                <li><a href="#">Tutorial and tips (20)</a></li>
-                                <li><a href="#">Design trends (15)</a></li>
-                                <li><a href="#">Online business (10)</a></li>
+                                <li><a href="#">Кукуруза</a></li>
+                                <li><a href="#">Пшеница</a></li>
+                                <li><a href="#">Соя</a></li>
+                                <li><a href="#">Семена зерновых</a></li>
+                                <li><a href="#">Семена бобовых</a></li>
                             </ul>
                         </div>
-                        <div class="widget">
-                            <h4>Недавние лоты</h4>
-                            <ul class="recent-posts">
-                                <li><a href="#">Lorem ipsum dolor sit amet munere commodo ut nam</a>
-                                    <div class="clear">
-                                    </div>
-                                    <span class="date"><i class="icon-calendar"></i> 6 March, 2013</span>
-                                    <span class="comment"><i class="icon-comment"></i> 4 Comments</span>
-                                </li>
-                                <li><a href="#">Sea nostrum omittantur ne mea malis nominavi insolens</a>
-                                    <div class="clear">
-                                    </div>
-                                    <span class="date"><i class="icon-calendar"></i> 6 March, 2013</span>
-                                    <span class="comment"><i class="icon-comment"></i> 2 Comments</span>
-                                </li>
-                                <li><a href="#">Eius graece recusabo no pri odio tale quo id, mea at saepe</a>
-                                    <div class="clear">
-                                    </div>
-                                    <span class="date"><i class="icon-calendar"></i> 4 March, 2013</span>
-                                    <span class="comment"><i class="icon-comment"></i> 12 Comments</span>
-                                </li>
-                                <li><a href="#">Malorum deserunt at nec usu ad graeco elaboraret at rebum</a>
-                                    <div class="clear">
-                                    </div>
-                                    <span class="date"><i class="icon-calendar"></i> 3 March, 2013</span>
-                                    <span class="comment"><i class="icon-comment"></i> 3 Comments</span>
-                                </li>
-                            </ul>
-                        </div>
+                        {#<div class="widget">#}
+                            {#<h4>Недавние лоты</h4>#}
+                            {#<ul class="recent-posts">#}
+                                {#<li><a href="#">Lorem ipsum dolor sit amet munere commodo ut nam</a>#}
+                                    {#<div class="clear">#}
+                                    {#</div>#}
+                                    {#<span class="date"><i class="icon-calendar"></i> 6 March, 2013</span>#}
+                                    {#<span class="comment"><i class="icon-comment"></i> 4 Comments</span>#}
+                                {#</li>#}
+                                {#<li><a href="#">Sea nostrum omittantur ne mea malis nominavi insolens</a>#}
+                                    {#<div class="clear">#}
+                                    {#</div>#}
+                                    {#<span class="date"><i class="icon-calendar"></i> 6 March, 2013</span>#}
+                                    {#<span class="comment"><i class="icon-comment"></i> 2 Comments</span>#}
+                                {#</li>#}
+                                {#<li><a href="#">Eius graece recusabo no pri odio tale quo id, mea at saepe</a>#}
+                                    {#<div class="clear">#}
+                                    {#</div>#}
+                                    {#<span class="date"><i class="icon-calendar"></i> 4 March, 2013</span>#}
+                                    {#<span class="comment"><i class="icon-comment"></i> 12 Comments</span>#}
+                                {#</li>#}
+                                {#<li><a href="#">Malorum deserunt at nec usu ad graeco elaboraret at rebum</a>#}
+                                    {#<div class="clear">#}
+                                    {#</div>#}
+                                    {#<span class="date"><i class="icon-calendar"></i> 3 March, 2013</span>#}
+                                    {#<span class="comment"><i class="icon-comment"></i> 3 Comments</span>#}
+                                {#</li>#}
+                            {#</ul>#}
+                        {#</div>#}
                     </aside>
                 </div>
                 <div class="span8">
                     {% for lot in lots %}
                         <article class="blog-post">
                             <div class="post-heading">
-                                <h3><a href="#">{{ lot.title }}</a></h3>
+                                <h3><a href="{{ path('show_lot', {id: lot.id}) }}">{{ lot.title }}</a></h3>
                             </div>
                             <div class="row">
                                 <div class="span3">
                                     <div class="post-image">
-                                        <a href="#"><img src="assets/img/dummies/blog1.jpg" alt="" /></a>
+                                        <a href="#"><img src="assets/img/4.jpg" alt="" /></a>
                                     </div>
                                 </div>
                                 <div class="span5">
                                     <ul class="post-meta">
-                                        <li class="first"><i class="icon-calendar"></i><span>{{ lot.getPlacementDate()|date("d.m.Y") }}</span></li>
+                                        <li class="first"><i class="icon-calendar"></i><span>Размещен: </span><span>{{ lot.getPlacementDate()|date("d.m.Y | H:i") }}</span></li>
+                                        <li><i class="icon-calendar"></i><span>Истекает: </span><span>{{ lot.getExpirationDate()|date("d.m.Y | H:i") }}</span></li>
                                         {#<li><i class="icon-list-alt"></i><span><a href="#">3 comments</a></span></li>#}
                                     </ul>
                                     <div class="clearfix">
                                     </div>
                                     <p>{{ lot.description }}</p>
-                                    <button class="btn btn-small btn-success" type="button">Read more</button>
+                                    <button class="btn btn-small btn-success" type="button">Посмотреть лот</button>
                                 </div>
                             </div>
                         </article>

@@ -19,6 +19,14 @@ class LotRepository extends ServiceEntityRepository
         parent::__construct($registry, Lot::class);
     }
 
+    public function findLotsDesc() {
+        return $this->createQueryBuilder('l')
+            ->orderBy('l.expiration_date', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Lot[] Returns an array of Lot objects
     //  */
